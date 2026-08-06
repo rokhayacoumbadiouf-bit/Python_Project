@@ -7,7 +7,7 @@ from datasets.gestion import (
     supprimer_dataset,
     trier_dataset,
 )
-from datasets.statistiques import statistiques
+from datasets.statistiques import generer_rapport_txt, statistiques
 from interface.menu import afficher_menu
 from interface.affichage import afficher_datasets
 from stockage.csv_manager import recharger, sauvegarder
@@ -64,6 +64,7 @@ def main():
             liste_datasets = recharger_tout()
         elif choix == "9":
             statistiques(liste_datasets)
+            generer_rapport_txt(liste_datasets)
         elif choix == "10":
             print("Fin du programme.")
             break

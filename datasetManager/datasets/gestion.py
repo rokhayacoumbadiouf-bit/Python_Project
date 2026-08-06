@@ -121,3 +121,4 @@ def trier_dataset(liste):
     """Trie la liste des datasets par nom, ordre alphabétique."""
     liste.sort(key=lambda d: d["nom"].lower())
     print("Datasets triés par nom.")
+
