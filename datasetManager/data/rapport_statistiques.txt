@@ -1,0 +1,23 @@
+==================================================
+         RAPPORT AUTOMATIQUE DES DATASETS         
+  Généré le : 06/08/2026 à 19:36:15
+==================================================
+
+--- STATISTIQUES GLOBALES ---
+Nombre total de datasets : 3
+Nombre cumulé de lignes  : 65 476
+Volume total stocké      : 57585.00 Mo
+
+--- RÉPARTITION PAR FORMAT ---
+Fichiers CSV  : 1
+Fichiers JSON : 2
+
+--- INVENTAIRE DES JEUX DE DONNÉES ---
+Nom             | Domaine         | Format   | Taille    
+--------------------------------------------------------
+TEST            | finance         | JSON     | 7.0    Mo
+TEST2           | finance         | JSON     | 789.0  Mo
+IRIS            | éducation       | CSV      | 56789.0 Mo
+
+==================================================
+Fin du rapport.
