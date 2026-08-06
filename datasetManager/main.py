@@ -1,64 +1,75 @@
-from datasets.gestion import ajouter_dataset, afficher_datasets, charger_json, rechercher_dataset, modifier_dataset, sauvegarder_json, supprimer_dataset, trier_dataset, sauvegarder, recharger 
-from data.statistiques import statistiques 
+
+
+from datasets.gestion import (
+    ajouter_dataset,
+    rechercher_dataset,
+    modifier_dataset,
+    supprimer_dataset,
+    trier_dataset,
+)
+from datasets.statistiques import statistiques
 from interface.menu import afficher_menu
+from interface.affichage import afficher_datasets
+from stockage.csv_manager import recharger, sauvegarder
+from stockage.json_manager import charger_json, sauvegarder_json
 
-liste_datasets = []
 
-while True:
-    afficher_menu()
-    choix = input("Votre choix : ")
+def sauvegarder_tout(liste_datasets):
+    """Répartit les datasets par format et les sauvegarde chacun
+    dans le bon fichier (CSV / JSON)."""
+    datasets_csv = [d for d in liste_datasets if d["format"].lower() == "csv"]
+    datasets_json = [d for d in liste_datasets if d["format"].lower() == "json"]
 
-    if choix == "1":
+    if not datasets_csv and not datasets_json:
+        print("Aucun dataset à sauvegarder.")
+        return
 
-        ajouter_dataset(liste_datasets)
+    if datasets_csv:
+        sauvegarder(datasets_csv)
+    if datasets_json:
+        sauvegarder_json(datasets_json)
 
-    elif choix == "2":
 
-        afficher_datasets(liste_datasets)
+def recharger_tout():
+    """Recharge les datasets CSV et JSON et les fusionne en une seule liste."""
+    liste_csv = recharger()
+    liste_json = charger_json()
+    liste = liste_csv + liste_json
+    print(f"Total rechargé : {len(liste)} dataset(s).")
+    return liste
 
-    elif choix == "3":
 
-        rechercher_dataset(liste_datasets)
+def main():
+    liste_datasets = []
 
-    elif choix == "4":
+    while True:
+        afficher_menu()
+        choix = input("Votre choix : ")
 
-        modifier_dataset(liste_datasets)
+        if choix == "1":
+            ajouter_dataset(liste_datasets)
+        elif choix == "2":
+            afficher_datasets(liste_datasets)
+        elif choix == "3":
+            rechercher_dataset(liste_datasets)
+        elif choix == "4":
+            modifier_dataset(liste_datasets)
+        elif choix == "5":
+            supprimer_dataset(liste_datasets)
+        elif choix == "6":
+            trier_dataset(liste_datasets)
+        elif choix == "7":
+            sauvegarder_tout(liste_datasets)
+        elif choix == "8":
+            liste_datasets = recharger_tout()
+        elif choix == "9":
+            statistiques(liste_datasets)
+        elif choix == "10":
+            print("Fin du programme.")
+            break
+        else:
+            print("Choix invalide.")
 
-    elif choix == "5":
 
-        supprimer_dataset(liste_datasets)
-
-    elif choix == "6":
-
-        trier_dataset(liste_datasets)
-
-    elif choix == "7":
-        
-        for dataset in liste_datasets:
-            if dataset['format'] == 'csv':
-             sauvegarder(liste_datasets)
-            if dataset['format'] == 'json':
-             sauvegarder_json(liste_datasets)
-
-    elif choix == "8":
-
-        for dataset in liste_datasets:
-            if dataset['format'] == 'csv':
-                 liste_datasets = recharger()
-            if dataset['format'] == 'json':
-                 liste_datasets = charger_json()
-
-    elif choix == "9":
-
-        statistiques(liste_datasets)
-
-    elif choix == "10":
-
-        print("Fin du programme.")
-
-        break
-
-    else:
-
-        print("Choix invalide.")
-
+if __name__ == "__main__":
+    main()

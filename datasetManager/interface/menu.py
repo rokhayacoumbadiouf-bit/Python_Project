@@ -1,10 +1,11 @@
-# =====================================
-# AFFICHER LE MENU
-# =====================================
+"""
+interface/menu.py
+Affichage du menu principal de l'application.
+"""
+
 
 def afficher_menu():
-
-    print("\n========== MENU ==========")
+    print("\n========== MENU DATASETS ==========")
     print("1. Ajouter un dataset")
     print("2. Afficher les datasets")
     print("3. Rechercher un dataset")
@@ -15,4 +16,4 @@ def afficher_menu():
     print("8. Recharger")
     print("9. Statistiques")
     print("10. Quitter")
-
+    print("====================================")

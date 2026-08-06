@@ -1,0 +1,20 @@
+[
+    {
+        "nom": "TEST",
+        "domaine": "finance",
+        "lignes": 789,
+        "colonnes": 76,
+        "taille": 7.0,
+        "format": "json",
+        "public": true
+    },
+    {
+        "nom": "TEST2",
+        "domaine": "finance",
+        "lignes": 7898,
+        "colonnes": 78998,
+        "taille": 789.0,
+        "format": "json",
+        "public": false
+    }
+]
